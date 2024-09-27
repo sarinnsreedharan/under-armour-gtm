@@ -1,24 +1,37 @@
-import { useState } from "react"
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Armour() {
+  const [textValue, setTextValue] = useState("");
+  const [buttonClicked, setButtonClicked] = useState(false);
+  const location = useLocation();
+  useEffect(() => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "pageView",
+      page_path: location.pathname
+    });
+  }, [location]);
+  const armourButtonClicked = () => {
+    setButtonClicked(!buttonClicked);
+  };
 
-    const[textValue,setTextValue]=useState('');
-    const[buttonClicked,setButtonClicked]=useState(false);
-    const armourButtonClicked=()=>{
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-            event: 'pageView',
-            page_path: '/new-page-url',  // Custom URL path
-            page_title: 'New Page Title'  // Custom page title
-          });
-        setButtonClicked(!buttonClicked)
-    }
-
-    return(
+  return (
+    <>
+      <input
+        type="text"
+        value={textValue}
+        onChange={(e) => {
+          setTextValue(e.target.value);
+        }}
+      />
+      <button onClick={armourButtonClicked}>Click me!</button>
+      {buttonClicked && (
         <>
-        <input type="text" value={textValue}  onChange={(e)=>{setTextValue(e.target.value)}}/>
-        <button onClick={armourButtonClicked}>Click me!</button>
-        {buttonClicked && <><h2>The word you have entered is:</h2><span>{textValue}</span></>}
+          <h2>The word you have entered is:</h2>
+          <span>{textValue}</span>
         </>
-    )
+      )}
+    </>
+  );
 }
