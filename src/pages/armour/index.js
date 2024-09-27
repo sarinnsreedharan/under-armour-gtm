@@ -9,9 +9,9 @@ export default function Armour() {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: "pageView",
-      page_path: location.pathname
+      page_path: 'sarin'
     });
-  }, [location]);
+  }, []);
   const armourButtonClicked = () => {
     setButtonClicked(!buttonClicked);
   };
