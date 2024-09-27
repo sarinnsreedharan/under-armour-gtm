@@ -4,7 +4,6 @@ import { useEffect } from "react";
 export default function Armour() {
   const [textValue, setTextValue] = useState("");
   const [buttonClicked, setButtonClicked] = useState(false);
-  const location = useLocation();
   useEffect(() => {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
